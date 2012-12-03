@@ -1,0 +1,14 @@
+diff -aurN cdrdao-1.2.3.orig/configure.ac cdrdao-1.2.3/configure.ac
+--- cdrdao-1.2.3.orig/configure.ac	2010-02-13 09:15:23.000000000 +0100
++++ cdrdao-1.2.3/configure.ac	2010-02-13 09:17:40.000000000 +0100
+@@ -85,8 +85,8 @@
+ AC_CHECK_FUNC(sched_setscheduler,AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,""),
+   AC_CHECK_LIB(posix4,sched_setscheduler,[use_libposix4=yes;AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,"")]))
+ 
+-AC_CHECK_LIB(socket,socket,[use_libsocket=yes])
+-AC_CHECK_LIB(socket,connect,[use_libsocket=yes])
++AC_CHECK_FUNC(socket, , [AC_CHECK_LIB(socket,socket,[use_libsocket=yes])])
++AC_CHECK_FUNC(connect, , [AC_CHECK_LIB(socket,connect,[use_libsocket=yes])])
+ 
+ dnl Add 'libsocket' if required
+ if test "$use_libsocket" = yes; then
